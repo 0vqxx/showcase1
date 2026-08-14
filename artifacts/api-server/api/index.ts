@@ -1,9 +1,10 @@
 // @ts-nocheck
-export default async function (req: any, res: any) {
+module.exports = async function (req, res) {
   try {
-    const app: any = (await import("../src/app")).default;
+    const appModule = require("../src/app");
+    const app = appModule.default || appModule;
     return app(req, res);
-  } catch (err: any) {
+  } catch (err) {
     console.error("VERCEL CRASH ERROR:", err);
     res.status(500).json({
       error: "Runtime Crash",
