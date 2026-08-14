@@ -5,7 +5,7 @@ import type { IncomingMessage, ServerResponse } from "http";
 import router from "./controllers";
 import { logger } from "./lib/logger";
 
-const pinoHttp = pinoHttpModule as unknown as (...args: any[]) => any;
+const pinoHttp = ((pinoHttpModule as any).default || pinoHttpModule) as (...args: any[]) => any;
 
 const app: Express = express();
 
